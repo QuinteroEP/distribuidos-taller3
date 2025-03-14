@@ -1,0 +1,10 @@
+Instalar Protoc y el plugin de Java
+1. Extraer https://github.com/protocolbuffers/protobuf/releases en C:\protobuf
+2. agregar https://repo1.maven.org/maven2/io/grpc/protoc-gen-grpc-java/ a C:\protobuf\bin
+3. Agregar C:\protobuf a PATH en las variables de entorno
+4. Verificar las instalacines en CMD con 'protoc --version' y 'where protoc-gen-grpc-java'
+5. Si esta abierto, reiniciar VS Code
+
+Generar los Stubs
+1. Ejecutar el comando 
+protoc --proto_path=. --java_out=myuber\src\generated --grpc-java_out=myuber\src\generated --plugin=protoc-gen-grpc-java=C:\protobuf\bin\protoc-gen-grpc-java.exe myuber\src\main\proto\servicio_taxi.proto myuber\src\main\proto\servicio_usuario.proto

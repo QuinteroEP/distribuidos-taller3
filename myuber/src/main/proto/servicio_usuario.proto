@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+// Servicio de usuarios
+service userService {
+    rpc registrar(datosUsuario) returns (success);
+}
+
+// Mensaje de peticion para registro
+ message datosUsuario {
+    string nombre = 1;
+    int64 telefono = 2;
+}
+
+// Mensaje respuesta
+ message success {
+    string status = 1;
+ }
