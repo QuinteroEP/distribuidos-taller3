@@ -6,5 +6,5 @@ Instalar Protoc y el plugin de Java
 5. Si esta abierto, reiniciar VS Code
 
 Generar los Stubs
-1. Ejecutar el comando 
-protoc --proto_path=. --java_out=myuber\src\generated --grpc-java_out=myuber\src\generated --plugin=protoc-gen-grpc-java=C:\protobuf\bin\protoc-gen-grpc-java.exe myuber\src\main\proto\servicio_taxi.proto myuber\src\main\proto\servicio_usuario.proto
+1. Ejecutar el comando en la carpeta Root, no en /myuber
+protoc --proto_path=. --java_out=myuber\src\generated --grpc-java_out=myuber\src\generated --plugin=protoc-gen-grpc-java=C:\protobuf\bin\protoc-gen-grpc-java.exe myuber\src\main\proto\servicioTaxi.proto myuber\src\main\proto\servicioUsuario.proto
