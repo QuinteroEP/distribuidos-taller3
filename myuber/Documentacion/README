@@ -1,4 +1,4 @@
-Instalar Protoc y el plugin de Java
+Instalar Protoc y el gRPC para Java
 1. Extraer https://github.com/protocolbuffers/protobuf/releases en C:\protobuf
 2. agregar https://repo1.maven.org/maven2/io/grpc/protoc-gen-grpc-java/ a C:\protobuf\bin
 3. Agregar C:\protobuf a PATH en las variables de entorno
@@ -6,4 +6,10 @@ Instalar Protoc y el plugin de Java
 5. Si esta abierto, reiniciar VS Code
 
 Generar los Stubs
-1. Compilar el programa mediante Maven con 'mvn clean install'
+1. Compilar el programa mediante Maven con 'mvn clean install'. Los stubs se encuentran en myuber/target/generated-sources/protobuf
+
+Si en algun momento los stubs o pom.xml marcan un error, utilizar el comando los soluciona
+
+Establecer la conexion entre los dispositivos
+
+Operaciones del Sistema

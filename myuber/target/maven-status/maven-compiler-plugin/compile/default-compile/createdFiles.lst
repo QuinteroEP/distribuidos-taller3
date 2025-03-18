@@ -13,6 +13,7 @@ taxiServiceGrpc.class
 userServiceGrpc$3.class
 userServiceGrpc.class
 taxiServiceGrpc$1.class
+com/puj/Cliente/myUber.class
 taxiServiceGrpc$taxiServiceBlockingStub.class
 taxiServiceGrpc$MethodHandlers.class
 userServiceGrpc$userServiceMethodDescriptorSupplier.class
