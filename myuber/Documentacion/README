@@ -11,5 +11,8 @@ Generar los Stubs
 Si en algun momento los stubs o pom.xml marcan un error, utilizar el comando los soluciona
 
 Establecer la conexion entre los dispositivos
+1. Abrir el puerto que se va a utilizar en Firewall en ambas maquinas
+2. En la maquina del servidor, ejectuar servidor.java y esperar a que se establezca la conexion
+3. En la maquina del cliente, ejecutar myUber.java y especificar el puerto
 
 Operaciones del Sistema
