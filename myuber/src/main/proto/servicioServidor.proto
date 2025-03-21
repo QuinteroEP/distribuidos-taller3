@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+// Servicio del servidor
+service serverService {
+    rpc pedirTaxi(peticionTaxi) returns (peticionRespuesta);
+    rpc listaServicios(Empty) returns (serviciosDeTaxi);
+    rpc register(datosUsuario) returns (success);
+}
+
+// Mensaje de peticion para registro
+message datosUsuario {
+    string nombre = 1;
+    int64 telefono = 2;
+}
+
+// Mensaje de peticion de taxi
+message peticionTaxi {
+    repeated int32 pos_x = 1;
+    repeated int32 pos_y = 2;
+    string usuario = 3;
+}
+
+// Mensaje de respuesta para taxi
+message peticionRespuesta {
+    string placaTaxi = 1;
+}
+
+// Mensaje de lista de taxi
+message serviciosDeTaxi {
+    repeated string tipo = 1;
+    repeated int32 costo = 2;
+    repeated string descripcion = 3;
+}
+
+// Mensaje vacio
+message Empty {}
+
+// Mensaje respuesta
+message success {
+    string status = 1;
+ }
