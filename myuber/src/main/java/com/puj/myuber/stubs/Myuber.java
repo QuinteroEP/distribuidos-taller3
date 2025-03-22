@@ -3954,11 +3954,12 @@ public final class Myuber {
       "\003 \001(\t\"&\n\021peticionRespuesta\022\021\n\tplacaTaxi\030" +
       "\001 \001(\t\"C\n\017serviciosDeTaxi\022\014\n\004tipo\030\001 \003(\t\022\r" +
       "\n\005costo\030\002 \003(\005\022\023\n\013descripcion\030\003 \003(\t\"\007\n\005Em" +
-      "pty\"\031\n\007success\022\016\n\006status\030\001 \001(\t2\206\001\n\rmyube" +
+      "pty\"\031\n\007success\022\016\n\006status\030\001 \001(\t2\222\001\n\rmyube" +
       "rService\022.\n\tpedirTaxi\022\r.peticionTaxi\032\022.p" +
-      "eticionRespuesta\022 \n\016listaServicios\022\006.Emp" +
-      "ty\032\006.Empty\022#\n\010register\022\r.datosUsuario\032\010." +
-      "successB\026\n\024com.puj.myuber.stubsb\006proto3"
+      "eticionRespuesta\022,\n\016listaServicios\022\006.Emp" +
+      "ty\032\020.serviciosDeTaxi0\001\022#\n\010register\022\r.dat" +
+      "osUsuario\032\010.successB\026\n\024com.puj.myuber.st" +
+      "ubsb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

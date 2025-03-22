@@ -50,28 +50,28 @@ public final class myuberServiceGrpc {
   }
 
   private static volatile io.grpc.MethodDescriptor<com.puj.myuber.stubs.Myuber.Empty,
-      com.puj.myuber.stubs.Myuber.Empty> getListaServiciosMethod;
+      com.puj.myuber.stubs.Myuber.serviciosDeTaxi> getListaServiciosMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "listaServicios",
       requestType = com.puj.myuber.stubs.Myuber.Empty.class,
-      responseType = com.puj.myuber.stubs.Myuber.Empty.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+      responseType = com.puj.myuber.stubs.Myuber.serviciosDeTaxi.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
   public static io.grpc.MethodDescriptor<com.puj.myuber.stubs.Myuber.Empty,
-      com.puj.myuber.stubs.Myuber.Empty> getListaServiciosMethod() {
-    io.grpc.MethodDescriptor<com.puj.myuber.stubs.Myuber.Empty, com.puj.myuber.stubs.Myuber.Empty> getListaServiciosMethod;
+      com.puj.myuber.stubs.Myuber.serviciosDeTaxi> getListaServiciosMethod() {
+    io.grpc.MethodDescriptor<com.puj.myuber.stubs.Myuber.Empty, com.puj.myuber.stubs.Myuber.serviciosDeTaxi> getListaServiciosMethod;
     if ((getListaServiciosMethod = myuberServiceGrpc.getListaServiciosMethod) == null) {
       synchronized (myuberServiceGrpc.class) {
         if ((getListaServiciosMethod = myuberServiceGrpc.getListaServiciosMethod) == null) {
           myuberServiceGrpc.getListaServiciosMethod = getListaServiciosMethod =
-              io.grpc.MethodDescriptor.<com.puj.myuber.stubs.Myuber.Empty, com.puj.myuber.stubs.Myuber.Empty>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              io.grpc.MethodDescriptor.<com.puj.myuber.stubs.Myuber.Empty, com.puj.myuber.stubs.Myuber.serviciosDeTaxi>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "listaServicios"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.puj.myuber.stubs.Myuber.Empty.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.puj.myuber.stubs.Myuber.Empty.getDefaultInstance()))
+                  com.puj.myuber.stubs.Myuber.serviciosDeTaxi.getDefaultInstance()))
               .setSchemaDescriptor(new myuberServiceMethodDescriptorSupplier("listaServicios"))
               .build();
         }
@@ -172,7 +172,7 @@ public final class myuberServiceGrpc {
     /**
      */
     default void listaServicios(com.puj.myuber.stubs.Myuber.Empty request,
-        io.grpc.stub.StreamObserver<com.puj.myuber.stubs.Myuber.Empty> responseObserver) {
+        io.grpc.stub.StreamObserver<com.puj.myuber.stubs.Myuber.serviciosDeTaxi> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getListaServiciosMethod(), responseObserver);
     }
 
@@ -228,8 +228,8 @@ public final class myuberServiceGrpc {
     /**
      */
     public void listaServicios(com.puj.myuber.stubs.Myuber.Empty request,
-        io.grpc.stub.StreamObserver<com.puj.myuber.stubs.Myuber.Empty> responseObserver) {
-      io.grpc.stub.ClientCalls.asyncUnaryCall(
+        io.grpc.stub.StreamObserver<com.puj.myuber.stubs.Myuber.serviciosDeTaxi> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncServerStreamingCall(
           getChannel().newCall(getListaServiciosMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -270,8 +270,9 @@ public final class myuberServiceGrpc {
 
     /**
      */
-    public com.puj.myuber.stubs.Myuber.Empty listaServicios(com.puj.myuber.stubs.Myuber.Empty request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public java.util.Iterator<com.puj.myuber.stubs.Myuber.serviciosDeTaxi> listaServicios(
+        com.puj.myuber.stubs.Myuber.Empty request) {
+      return io.grpc.stub.ClientCalls.blockingServerStreamingCall(
           getChannel(), getListaServiciosMethod(), getCallOptions(), request);
     }
 
@@ -312,14 +313,6 @@ public final class myuberServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<com.puj.myuber.stubs.Myuber.Empty> listaServicios(
-        com.puj.myuber.stubs.Myuber.Empty request) {
-      return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getListaServiciosMethod(), getCallOptions()), request);
-    }
-
-    /**
-     */
     public com.google.common.util.concurrent.ListenableFuture<com.puj.myuber.stubs.Myuber.success> register(
         com.puj.myuber.stubs.Myuber.datosUsuario request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
@@ -354,7 +347,7 @@ public final class myuberServiceGrpc {
           break;
         case METHODID_LISTA_SERVICIOS:
           serviceImpl.listaServicios((com.puj.myuber.stubs.Myuber.Empty) request,
-              (io.grpc.stub.StreamObserver<com.puj.myuber.stubs.Myuber.Empty>) responseObserver);
+              (io.grpc.stub.StreamObserver<com.puj.myuber.stubs.Myuber.serviciosDeTaxi>) responseObserver);
           break;
         case METHODID_REGISTER:
           serviceImpl.register((com.puj.myuber.stubs.Myuber.datosUsuario) request,
@@ -387,10 +380,10 @@ public final class myuberServiceGrpc {
                 service, METHODID_PEDIR_TAXI)))
         .addMethod(
           getListaServiciosMethod(),
-          io.grpc.stub.ServerCalls.asyncUnaryCall(
+          io.grpc.stub.ServerCalls.asyncServerStreamingCall(
             new MethodHandlers<
               com.puj.myuber.stubs.Myuber.Empty,
-              com.puj.myuber.stubs.Myuber.Empty>(
+              com.puj.myuber.stubs.Myuber.serviciosDeTaxi>(
                 service, METHODID_LISTA_SERVICIOS)))
         .addMethod(
           getRegisterMethod(),

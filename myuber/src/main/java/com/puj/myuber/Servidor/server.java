@@ -21,15 +21,13 @@ public class server {
         }
 
         System.out.println("Servidor iniciado en el puerto " + server.getPort());
-        System.out.println("Esperando conexiones de clientes");
+        System.out.println("Esperando peticiones del clientes...\n");
 
         try {
             server.awaitTermination();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-        System.out.println("Cliente conectado");
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             server.shutdown();

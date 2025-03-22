@@ -5,7 +5,7 @@ option java_package = "com.puj.myuber.stubs";
 // Servicio del servidor
 service myuberService {
     rpc pedirTaxi(peticionTaxi) returns (peticionRespuesta);
-    rpc listaServicios(Empty) returns (Empty);
+    rpc listaServicios(Empty) returns (stream serviciosDeTaxi);
     rpc register(datosUsuario) returns (success);
 }
 

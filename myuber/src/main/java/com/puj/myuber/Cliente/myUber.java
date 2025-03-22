@@ -1,8 +1,13 @@
 package com.puj.myuber.Cliente;
 
+import java.util.Iterator;
 import java.util.Scanner;
 
+import com.puj.myuber.stubs.Myuber.Empty;
 import com.puj.myuber.stubs.Myuber.datosUsuario;
+import com.puj.myuber.stubs.Myuber.peticionRespuesta;
+import com.puj.myuber.stubs.Myuber.peticionTaxi;
+import com.puj.myuber.stubs.Myuber.serviciosDeTaxi;
 import com.puj.myuber.stubs.myuberServiceGrpc;
 import com.puj.myuber.stubs.myuberServiceGrpc.myuberServiceBlockingStub;
 
@@ -11,9 +16,11 @@ import io.grpc.ManagedChannelBuilder;
 
 public class myUber {
     public static void main(String[] args){
+
         //Establecer conexion con el servidor
         String server = "192.168.10.6"; //Cambiar segun la IP del servidor
         int port = 1080;
+        @SuppressWarnings("resource")
         Scanner input = new Scanner(System.in);
     
         System.out.println("Conectando con el servidor");
@@ -26,7 +33,7 @@ public class myUber {
         System.out.println("Conectado al servidor: " + channel.authority());
 
         //Uso
-        System.out.println("\t||Bienvenido a MyUber||");
+        System.out.println("\t||Bienvenido a MyUber||\n");
 
         System.out.println("\t|Registro|");
         System.out.println("Nombre: ");
@@ -41,8 +48,6 @@ public class myUber {
 
         uberStub.register(datos);
 
-        System.out.println("\t|Servicios disponibles|");
-
         System.out.println("\t|Desea consultar la lista de servicios antes de realizar la solicitud?|");
         System.out.println("1. Si");
         System.out.println("2. No");
@@ -51,15 +56,38 @@ public class myUber {
 
         if(opt == 1){
             System.out.println("\t|Lista de servicios|");
+
+            // Create an Empty request
+            Empty request = Empty.newBuilder().build();
+
+            // Call the listaServicios method and get the streaming response
+            Iterator<serviciosDeTaxi> response = uberStub.listaServicios(request);
+
+            // Process each message in the stream
+            while (response.hasNext()) {
+                serviciosDeTaxi servicio = response.next();
+                System.out.println("Tipo de servicio: " + servicio.getTipo(0));
+                System.out.println("Costo por hora: " + servicio.getCosto(0));
+                System.out.println("Descripcion: " + servicio.getDescripcion(0));
+                System.out.println("\n");
+            }
         }
 
         System.out.println("\t|Solicitud de taxi|");
-        System.out.println("Ingrese la coordenada en X: ");
+        System.out.println("Ingrese su posicion en X: ");
         int posX = input.nextInt();
-        System.out.println("Ingrese la coordenada en Y: ");
+        System.out.println("Ingrese la posicion en Y: ");
         int posY = input.nextInt();
 
-        
+        peticionTaxi peticion = peticionTaxi.newBuilder()
+                .setPosX(posX)
+                .setPosY(posY)
+                .setUsuario(nombre)
+                .build();
+
+        peticionRespuesta response = uberStub.pedirTaxi(peticion);
+        System.out.println("Su taxi viene en camino. Placas " + response.getPlacaTaxi());
+
         channel.shutdown();
-    }
+    } 
 }
