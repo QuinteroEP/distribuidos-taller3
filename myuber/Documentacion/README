@@ -6,13 +6,10 @@ Instalar Protoc y el gRPC para Java
 5. Si esta abierto, reiniciar VS Code
 
 Generar los Stubs
-1. Compilar el programa mediante Maven con 'mvn clean install'. Los stubs se encuentran en myuber/target/generated-sources/protobuf
-
-Si en algun momento los stubs o pom.xml marcan un error, utilizar el comando los soluciona
+1. Compilar el programa mediante Maven con 'mvn clean install'. Los stubs se encuentran en myuber/target/generated-sources/protobuf y deben ser movidos a myuber\src\main\java\com\puj\myuber
 
 Establecer la conexion entre los dispositivos
-1. Abrir el puerto que se va a utilizar en Firewall en ambas maquinas
-2. En la maquina del servidor, ejectuar servidor.java y esperar a que se establezca la conexion
-3. En la maquina del cliente, ejecutar myUber.java y especificar el puerto
-
-Operaciones del Sistema
+1. Antes de ejecutar el programa, cambiar la variable 'server' en myUber.java con la direccion IP de la maquina donde se ejecutará el servidor
+2. En la maquina del servidor, abrir la terminal de windows como administrador e introducir el comando 'netsh advfirewall firewall add rule name="gRPC Port 1080" dir=in action=allow protocol=TCP localport=1080' para permitir la conexion
+3. En la maquina del servidor, ejectuar server.java y verificar el estado del puerto con 'netstat -an | grep 1080'
+4. En la maquina del cliente, ejecutar myUber.java
