@@ -1,15 +1,23 @@
+#Compilacion inicial#
 Instalar Protoc y el gRPC para Java
 1. Extraer https://github.com/protocolbuffers/protobuf/releases en C:\protobuf
-2. agregar https://repo1.maven.org/maven2/io/grpc/protoc-gen-grpc-java/ a C:\protobuf\bin
+2. Agregar https://repo1.maven.org/maven2/io/grpc/protoc-gen-grpc-java/ a C:\protobuf\bin
 3. Agregar C:\protobuf a PATH en las variables de entorno
 4. Verificar las instalacines en CMD con 'protoc --version' y 'where protoc-gen-grpc-java'
 5. Si esta abierto, reiniciar VS Code
 
 Generar los Stubs
-1. Compilar el programa mediante Maven con 'mvn clean install'. Los stubs se encuentran en myuber/target/generated-sources/protobuf y deben ser movidos a myuber\src\main\java\com\puj\myuber
+1. En la terminal de VS Code ingresar a la carpeta del projecto mediante 'cd .\myuber\'
+2. Compilar el programa mediante Maven con 'mvn clean install'. Los stubs se encuentran en 'myuber/target/generated-sources/protobuf' y deben ser movidos a 'myuber/src/main/java/com/puj/myuber/stubs'
+3. Si se genera algun error al compilar: 
+    3.1 Comentar todo el codigo dentro de 'server.java', 'servergRPC.java' y 'myUber.java'
+    3.2 Eliminar los archivos dentro de 'myuber/src/main/java/com/puj/myuber/stubs'
+    3.3 Eliminar la capeta 'Target'
+    3.4 Volver a ejecutar 'mvn clean install'
+    3.5 Eliminar los comentarios del punto 2.1
 
-Establecer la conexion entre los dispositivos
-1. Antes de ejecutar el programa, cambiar la variable 'server' en myUber.java con la direccion IP de la maquina donde se ejecutará el servidor
+#Ejecucion#
+1. Antes de ejecutar el programa, cambiar la variable 'server' en 'myUber.java' con la direccion IP de la maquina donde se ejecutará el servidor
 2. En la maquina del servidor, abrir la terminal de windows como administrador e introducir el comando 'netsh advfirewall firewall add rule name="gRPC Port 1080" dir=in action=allow protocol=TCP localport=1080' para permitir la conexion
-3. En la maquina del servidor, ejectuar server.java y verificar el estado del puerto con 'netstat -an | FINDSTR 1080'
-4. En la maquina del cliente, ejecutar myUber.java
+3. En la maquina del servidor, ejectuar 'server.java' y verificar el estado del puerto con 'netstat -an | FINDSTR 1080'
+4. En la maquina del cliente, ejecutar 'myUber.java'
