@@ -1,17 +1,17 @@
 package com.puj.myuber.Servidor;
 
-import com.puj.myuber.Myuber.datosUsuario;
-import com.puj.myuber.Myuber.peticionRespuesta;
-import com.puj.myuber.Myuber.peticionTaxi;
-import com.puj.myuber.Myuber.success;
-import com.puj.myuber.myuberServiceGrpc;
+import com.puj.myuber.stubs.Myuber.datosUsuario;
+import com.puj.myuber.stubs.Myuber.peticionRespuesta;
+import com.puj.myuber.stubs.Myuber.peticionTaxi;
+import com.puj.myuber.stubs.Myuber.success;
+import com.puj.myuber.stubs.myuberServiceGrpc;
 
 public class servergRPC extends myuberServiceGrpc.myuberServiceImplBase {
     //Implementacion de los stubs
     @Override
-    public void listaServicios(com.puj.myuber.Myuber.Empty request, io.grpc.stub.StreamObserver<com.puj.myuber.Myuber.Empty> responseObserver) {
+    public void listaServicios(com.puj.myuber.stubs.Myuber.Empty request, io.grpc.stub.StreamObserver<com.puj.myuber.stubs.Myuber.Empty> responseObserver) {
         System.out.println("Lista de servicios:");
-        responseObserver.onNext(com.puj.myuber.Myuber.Empty.newBuilder().build());
+        responseObserver.onNext(com.puj.myuber.stubs.Myuber.Empty.newBuilder().build());
         responseObserver.onCompleted();
     }
     

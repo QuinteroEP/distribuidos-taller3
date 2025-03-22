@@ -11,5 +11,5 @@ Generar los Stubs
 Establecer la conexion entre los dispositivos
 1. Antes de ejecutar el programa, cambiar la variable 'server' en myUber.java con la direccion IP de la maquina donde se ejecutará el servidor
 2. En la maquina del servidor, abrir la terminal de windows como administrador e introducir el comando 'netsh advfirewall firewall add rule name="gRPC Port 1080" dir=in action=allow protocol=TCP localport=1080' para permitir la conexion
-3. En la maquina del servidor, ejectuar server.java y verificar el estado del puerto con 'netstat -an | grep 1080'
+3. En la maquina del servidor, ejectuar server.java y verificar el estado del puerto con 'netstat -an | FINDSTR 1080'
 4. En la maquina del cliente, ejecutar myUber.java

@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option java_package = "com.puj.myuber";
+option java_package = "com.puj.myuber.stubs";
 
 // Servicio del servidor
 service myuberService {

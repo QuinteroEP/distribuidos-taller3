@@ -2,9 +2,9 @@ package com.puj.myuber.Cliente;
 
 import java.util.Scanner;
 
-import com.puj.myuber.Myuber.datosUsuario;
-import com.puj.myuber.myuberServiceGrpc;
-import com.puj.myuber.myuberServiceGrpc.myuberServiceBlockingStub;
+import com.puj.myuber.stubs.Myuber.datosUsuario;
+import com.puj.myuber.stubs.myuberServiceGrpc;
+import com.puj.myuber.stubs.myuberServiceGrpc.myuberServiceBlockingStub;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -23,6 +23,7 @@ public class myUber {
                 .build();
 
         myuberServiceBlockingStub uberStub = myuberServiceGrpc.newBlockingStub(channel);
+        System.out.println("Conectado al servidor: " + channel.authority());
 
         //Uso
         System.out.println("\t||Bienvenido a MyUber||");
@@ -39,7 +40,7 @@ public class myUber {
                 .build(); 
 
         uberStub.register(datos);
-        
+
         System.out.println("\t|Servicios disponibles|");
 
         System.out.println("\t|Desea consultar la lista de servicios antes de realizar la solicitud?|");
