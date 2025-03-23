@@ -9,11 +9,13 @@ import com.puj.myuber.stubs.myuberServiceGrpc;
 
 public class servergRPC extends myuberServiceGrpc.myuberServiceImplBase {
     //Datos de taxis
+    //Posicion
     double[][] taxis_posicion = {
         {1, 5, 6, 3, 4, 2},
         {1, 4, 9, 8, 4, 3}
     };
 
+    //Placas
     String[] taxis_placa = {
         "XXC23", 
         "XCV33", 
@@ -57,6 +59,7 @@ public class servergRPC extends myuberServiceGrpc.myuberServiceImplBase {
     //Implementacion de los stubs
     @Override
     public void register(datosUsuario request, io.grpc.stub.StreamObserver<success> responseObserver) {
+        //Registrar un nuevo usuario
         responseObserver.onNext(success.newBuilder().setStatus("Success").build());
         System.out.println("Nuevo usuario registrado: " + request.getNombre());
         responseObserver.onCompleted();
@@ -64,6 +67,7 @@ public class servergRPC extends myuberServiceGrpc.myuberServiceImplBase {
 
     @Override
     public void listaServicios(com.puj.myuber.stubs.Myuber.Empty request, io.grpc.stub.StreamObserver<com.puj.myuber.stubs.Myuber.serviciosDeTaxi> responseObserver) {
+        //Enviar la lista de servicios disponibles
         System.out.println("Enviando lista de servicios\n");
         responseObserver.onNext(serviciosDeTaxi.newBuilder()
             .addTipo("Normal")
@@ -83,16 +87,16 @@ public class servergRPC extends myuberServiceGrpc.myuberServiceImplBase {
             .addDescripcion("Servicio de taxi compartido")
             .build());
 
-        // Complete the response
         responseObserver.onCompleted();
     }
     
     @Override
     public void pedirTaxi(peticionTaxi request, io.grpc.stub.StreamObserver<peticionRespuesta> responseObserver) { 
+        //Pedir un taxi
         System.out.println("Petcion de taxi recibida para las coordenadas: " + request.getPosX() + ", " + request.getPosY());
         double coordX = request.getPosX();
         double coordY = request.getPosY();
-        double distancia = 8;
+        double distancia = 100;
         int index_taxi = 0;
 
         System.out.println("Taxis disponibles:");
@@ -101,11 +105,13 @@ public class servergRPC extends myuberServiceGrpc.myuberServiceImplBase {
         }
         System.out.println("\n");
 
+        //Calcular el taxi más cercano
         for(int i = 0; i < taxis_posicion[0].length; i++){
             double x = taxis_posicion[0][i];
             double y = taxis_posicion[1][i];
             double dist = Math.sqrt(Math.pow((coordX - x), 2) + Math.pow((coordY - y), 2));
             if(dist < distancia){
+                distancia = dist;
                 index_taxi = i;
             }
         }
@@ -115,6 +121,7 @@ public class servergRPC extends myuberServiceGrpc.myuberServiceImplBase {
         responseObserver.onNext(peticionRespuesta.newBuilder().setPlacaTaxi(taxis_placa[index_taxi]).build());
         responseObserver.onCompleted();
 
+        //Eliminar el taxi asignado de la lista de taxis disponibles
         taxis_placa = removeTaxiAtIndex(taxis_placa, index_taxi);
         taxis_posicion = removeTaxiPositionAtIndex(taxis_posicion, index_taxi);
     }

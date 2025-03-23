@@ -7,6 +7,7 @@ import io.grpc.ServerBuilder;
 
 public class server {
     public static void main(String[] args){
+        //Abrir el puerto 1080 para la aplicacion
         System.out.println("Inicializando servidor de MyUber");
 
         Server server = ServerBuilder

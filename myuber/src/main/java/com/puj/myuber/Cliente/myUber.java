@@ -25,22 +25,26 @@ public class myUber {
     
         System.out.println("Conectando con el servidor");
 
+        //Crear el canal
         ManagedChannel channel = ManagedChannelBuilder.forAddress(server, port)
                 .usePlaintext()
                 .build();
 
+        //Crear el Stub
         myuberServiceBlockingStub uberStub = myuberServiceGrpc.newBlockingStub(channel);
         System.out.println("Conectado al servidor: " + channel.authority());
 
         //Uso
         System.out.println("\t||Bienvenido a MyUber||\n");
 
+        //Ingresar datos de registro
         System.out.println("\t|Registro|");
         System.out.println("Nombre: ");
         String nombre = input.nextLine();
         System.out.println("Telefono: ");
         Long telefono = input.nextLong();
 
+        //Enviar datos de registro al servidor
         datosUsuario datos = datosUsuario.newBuilder()
                 .setNombre(nombre)
                 .setTelefono(telefono)
@@ -57,13 +61,11 @@ public class myUber {
         if(opt == 1){
             System.out.println("\t|Lista de servicios|");
 
-            // Create an Empty request
             Empty request = Empty.newBuilder().build();
 
-            // Call the listaServicios method and get the streaming response
             Iterator<serviciosDeTaxi> response = uberStub.listaServicios(request);
 
-            // Process each message in the stream
+            //Recibir los mensajes del servidor
             while (response.hasNext()) {
                 serviciosDeTaxi servicio = response.next();
                 System.out.println("Tipo de servicio: " + servicio.getTipo(0));
@@ -74,11 +76,13 @@ public class myUber {
         }
 
         System.out.println("\t|Solicitud de taxi|");
+        //Ingresar posicion
         System.out.println("Ingrese su posicion en X: ");
         int posX = input.nextInt();
         System.out.println("Ingrese la posicion en Y: ");
         int posY = input.nextInt();
 
+        //Enviar peticion al servidor
         peticionTaxi peticion = peticionTaxi.newBuilder()
                 .setPosX(posX)
                 .setPosY(posY)
@@ -88,6 +92,7 @@ public class myUber {
         peticionRespuesta response = uberStub.pedirTaxi(peticion);
         System.out.println("Su taxi viene en camino. Placas " + response.getPlacaTaxi());
 
+        //Cerrar el canal
         channel.shutdown();
     } 
 }
